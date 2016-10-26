@@ -1,7 +1,7 @@
 {
   "name": "exunit",
   "main": "./lib/exunit",
-  "version": "0.3.3",
+  "version": "1.0",
   "private": true,
   "description": "Atom ExUnit (Elixir) runner package",
   "activationCommands": {
