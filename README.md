@@ -32,3 +32,7 @@ and adding or changing the following snippet:
 ## Acknowledgements
 
 This is a direct fork of atom-rspec (https://github.com/fcoury/atom-rspec). Thanks for @fcoury for the code!
+
+## Developer notes
+
+Publish a new version with `apm publish 1.0.2 minor`
