@@ -10,7 +10,8 @@ HotKeys:
 - __Ctrl+Alt+X__ - executes only the test on the line the cursor's at
 - __Ctrl+Alt+E__ - re-executes the last executed test
 
-![Screenshot](http://cl.ly/image/2G2B3M2g3l3k/stats_collector_spec.rb%20-%20-Users-fcoury-Projects-crm_bliss.png)
+<!-- TODO: Add screenshot -->
+<!-- ![Screenshot](http://cl.ly/image/2G2B3M2g3l3k/stats_collector_spec.rb%20-%20-Users-fcoury-Projects-crm_bliss.png) -->
 
 ## Configuration
 
@@ -26,3 +27,7 @@ and adding or changing the following snippet:
 
     'exunit':
       'command': 'bundle exec exunit'
+
+## Acknowledgements
+
+This is a direct fork of atom-rspec (https://github.com/fcoury/atom-rspec). Thanks for @fcoury for the code!
