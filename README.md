@@ -18,15 +18,16 @@ HotKeys:
 By default this package will run `exunit` as the command.
 
 You can set the default command by either accessing the Settings page (Cmd+,)
-and changing the command option like below:
+and changing the command option.
 
-![Configuration Screenshot](http://f.cl.ly/items/2k1C0E0e1l2Z3m1l3e1R/Settings%20-%20-Users-fcoury-Projects-crm_bliss.jpg)
+<!-- TODO: Add screenshot -->
+<!-- ![Configuration Screenshot](http://f.cl.ly/items/2k1C0E0e1l2Z3m1l3e1R/Settings%20-%20-Users-fcoury-Projects-crm_bliss.jpg) -->
 
 Or by opening your configuration file (clicking __Atom__ > __Open Your Config__)
 and adding or changing the following snippet:
 
     'exunit':
-      'command': 'bundle exec exunit'
+      'command': 'exunit'
 
 ## Acknowledgements
 
