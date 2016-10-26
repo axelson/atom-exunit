@@ -31,7 +31,7 @@ class TextFormatter
 
     for i in [0..replaceCount]
       text = text.replace /\[(3[0-7])m/, (match, colorCode) =>
-        "<p class=\"rspec-color tty-#{colorCode}\">"
+        "<p class=\"exunit-color tty-#{colorCode}\">"
       text = text.replace /\[0m/g, '</p>'
 
     new TextFormatter(text)

@@ -1,4 +1,4 @@
-RSpecView = require './rspec-view'
+ExUnitView = require './exunit-view'
 {CompositeDisposable} = require 'atom'
 url = require 'url'
 
@@ -6,10 +6,10 @@ module.exports =
   config:
     command:
       type: 'string'
-      default: 'rspec'
+      default: 'mix test'
     spec_directory:
       type: 'string'
-      default: 'spec'
+      default: 'test'
     save_before_run:
       type: 'boolean'
       default: false
@@ -17,7 +17,7 @@ module.exports =
       type: 'boolean'
       default: true
 
-  rspecView: null
+  exUnitView: null
   subscriptions: null
 
   activate: (state) ->
@@ -28,29 +28,29 @@ module.exports =
     @subscriptions = new CompositeDisposable
 
     @subscriptions.add atom.commands.add 'atom-workspace',
-      'rspec:run': =>
+      'exunit:run': =>
         @run()
 
-      'rspec:run-for-line': =>
+      'exunit:run-for-line': =>
         @runForLine()
 
-      'rspec:run-last': =>
+      'exunit:run-last': =>
         @runLast()
 
-      'rspec:run-all': =>
+      'exunit:run-all': =>
         @runAll()
 
     atom.workspace.addOpener (uriToOpen) ->
       {protocol, pathname} = url.parse(uriToOpen)
-      return unless protocol is 'rspec-output:'
-      new RSpecView(pathname)
+      return unless protocol is 'exunit-output:'
+      new ExUnitView(pathname)
 
   deactivate: ->
-    @rspecView.destroy()
+    @exUnitView.destroy()
     @subscriptions.dispose()
 
   serialize: ->
-    rspecViewState: @rspecView.serialize()
+    exUnitViewState: @exUnitView.serialize()
     lastFile: @lastFile
     lastLine: @lastLine
 
@@ -59,10 +59,10 @@ module.exports =
     @lastLine = lineNumber
 
     previousActivePane = atom.workspace.getActivePane()
-    uri = "rspec-output://#{file}"
-    atom.workspace.open(uri, split: 'right', activatePane: false, searchAllPanes: true).done (rspecView) ->
-      if rspecView instanceof RSpecView
-        rspecView.run(lineNumber)
+    uri = "exunit-output://#{file}"
+    atom.workspace.open(uri, split: 'right', activatePane: false, searchAllPanes: true).done (exUnitView) ->
+      if exUnitView instanceof ExUnitView
+        exUnitView.run(lineNumber)
         previousActivePane.activate()
 
   runForLine: ->
@@ -94,4 +94,4 @@ module.exports =
     return unless project?
 
     @openUriFor(project.getPaths()[0] +
-    "/" + atom.config.get("rspec.spec_directory"), @lastLine)
+    "/" + atom.config.get("exunit.spec_directory"), @lastLine)

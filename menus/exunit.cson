@@ -1,0 +1,21 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer': [
+      { 'label': 'Run All Tests', 'command': 'exunit:run' }
+      { 'label': 'Run Current Test', 'command': 'exunit:run-for-line' }
+      { 'label': 'Re-Run Last Test', 'command': 'exunit:run-last' }
+    ]
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'ExUnit'
+      'submenu': [
+        { 'label': 'Run All Tests', 'command': 'exunit:run' }
+        { 'label': 'Run Current Test', 'command': 'exunit:run-for-line' }
+        { 'label': 'Re-Run Last Test', 'command': 'exunit:run-last' }
+      ]
+    ]
+  }
+]

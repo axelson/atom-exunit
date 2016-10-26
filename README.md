@@ -1,20 +1,20 @@
-# Atom RSpec Runner Package
+# Atom ExUnit Runner Package
 
-[![ghit.me](https://ghit.me/badge.svg?repo=fcoury/atom-rspec)](https://ghit.me/repo/fcoury/atom-rspec)
+[![ghit.me](https://ghit.me/badge.svg?repo=axelson/atom-exunit)](https://ghit.me/repo/axelson/atom-exunit)
 
-Add ability to run RSpec and see the output without leaving Atom.
+Add ability to run ExUnit and see the output without leaving Atom.
 
 HotKeys:
 
-- __Ctrl+Alt+T__ - executes all specs the current file
-- __Ctrl+Alt+X__ - executes only the spec on the line the cursor's at
-- __Ctrl+Alt+E__ - re-executes the last executed spec
+- __Ctrl+Alt+T__ - executes all tests the current file
+- __Ctrl+Alt+X__ - executes only the test on the line the cursor's at
+- __Ctrl+Alt+E__ - re-executes the last executed test
 
 ![Screenshot](http://cl.ly/image/2G2B3M2g3l3k/stats_collector_spec.rb%20-%20-Users-fcoury-Projects-crm_bliss.png)
 
 ## Configuration
 
-By default this package will run `rspec` as the command.
+By default this package will run `exunit` as the command.
 
 You can set the default command by either accessing the Settings page (Cmd+,)
 and changing the command option like below:
@@ -24,5 +24,5 @@ and changing the command option like below:
 Or by opening your configuration file (clicking __Atom__ > __Open Your Config__)
 and adding or changing the following snippet:
 
-    'rspec':
-      'command': 'bundle exec rspec'
+    'exunit':
+      'command': 'bundle exec exunit'

@@ -3,16 +3,16 @@ path = require 'path'
 ChildProcess  = require 'child_process'
 TextFormatter = require './text-formatter'
 
-class RSpecView extends ScrollView
+class ExUnitView extends ScrollView
   atom.deserializers.add(this)
 
   @deserialize: ({filePath}) ->
-    new RSpecView(filePath)
+    new ExUnitView(filePath)
 
   @content: ->
-    @div class: 'rspec rspec-console', tabindex: -1, =>
-      @div class: 'rspec-spinner', 'Starting RSpec...'
-      @pre class: 'rspec-output'
+    @div class: 'exunit exunit-console', tabindex: -1, =>
+      @div class: 'exunit-spinner', 'Starting ExUnit...'
+      @pre class: 'exunit-output'
 
   initialize: ->
     super
@@ -23,12 +23,12 @@ class RSpecView extends ScrollView
     console.log "File path:", filePath
     @filePath = filePath
 
-    @output  = @find(".rspec-output")
-    @spinner = @find(".rspec-spinner")
+    @output  = @find(".exunit-output")
+    @spinner = @find(".exunit-spinner")
     @output.on("click", @terminalClicked)
 
   serialize: ->
-    deserializer: 'RSpecView'
+    deserializer: 'ExUnitView'
     filePath: @getPath()
 
   copySelectedText: ->
@@ -37,10 +37,10 @@ class RSpecView extends ScrollView
     atom.clipboard.write(text)
 
   getTitle: ->
-    "RSpec - #{path.basename(@getPath())}"
+    "ExUnit - #{path.basename(@getPath())}"
 
   getURI: ->
-    "rspec-output://#{@getPath()}"
+    "exunit-output://#{@getPath()}"
 
   getPath: ->
     @filePath
@@ -49,7 +49,7 @@ class RSpecView extends ScrollView
     failureMessage = "The error message"
 
     @html $$$ ->
-      @h2 'Running RSpec Failed'
+      @h2 'Running ExUnit Failed'
       @h3 failureMessage if failureMessage?
 
   terminalClicked: (e) =>
@@ -64,21 +64,23 @@ class RSpecView extends ScrollView
         editor.setCursorBufferPosition([line-1, 0])
 
   run: (lineNumber) ->
-    atom.workspace.saveAll() if atom.config.get("rspec.save_before_run")
+    atom.workspace.saveAll() if atom.config.get("exunit.save_before_run")
     @spinner.show()
     @output.empty()
     projectPath = atom.project.getPaths()[0]
 
     spawn = ChildProcess.spawn
 
-    # Atom saves config based on package name, so we need to use rspec here.
-    specCommand = atom.config.get("rspec.command")
-    options = " --tty"
-    options += " --color" if atom.config.get("rspec.force_colored_results")
+    # Atom saves config based on package name, so we need to use exunit here.
+    specCommand = atom.config.get("exunit.command")
+    options = ""
+    # options = " --tty"
+    # options += " --color" if atom.config.get("exunit.force_colored_results")
     command = "#{specCommand} #{options} #{@filePath}"
     command = "#{command}:#{lineNumber}" if lineNumber
 
-    console.log "[RSpec] running: #{command}"
+    console.log "[ExUnit] running: #{command}"
+    @addOutput "[ExUnit] running: #{command}\n"
 
     terminal = spawn("bash", ["-l"])
 
@@ -105,6 +107,6 @@ class RSpecView extends ScrollView
     @addOutput data
 
   onClose: (code) =>
-    console.log "[RSpec] exit with code: #{code}"
+    console.log "[ExUnit] exit with code: #{code}"
 
-module.exports = RSpecView
+module.exports = ExUnitView

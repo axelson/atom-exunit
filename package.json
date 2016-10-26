@@ -1,18 +1,18 @@
 {
-  "name": "rspec",
-  "main": "./lib/rspec",
+  "name": "exunit",
+  "main": "./lib/exunit",
   "version": "0.3.3",
   "private": true,
-  "description": "Atom RSpec runner package",
+  "description": "Atom ExUnit (Elixir) runner package",
   "activationCommands": {
     "atom-workspace": [
-      "rspec:run",
-      "rspec:run-for-line",
-      "rspec:run-last",
-      "rspec:run-all"
+      "exunit:run",
+      "exunit:run-for-line",
+      "exunit:run-last",
+      "exunit:run-all"
     ]
   },
-  "repository": "https://github.com/fcoury/atom-rspec",
+  "repository": "https://github.com/axelson/atom-exunit",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
