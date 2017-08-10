@@ -28,6 +28,9 @@ and adding or changing the following snippet:
 
     'exunit':
       'command': 'exunit'
+      'root_directory': 'apps/my_primary_app'
+
+Note: Ideally we'd detect umbrella apps and automatically `cd` into the umbrella app before running the tests, but for now you can set a "root_directory" which should be the primary directory for your apps.
 
 ## Acknowledgements
 

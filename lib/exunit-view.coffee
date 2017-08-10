@@ -68,6 +68,7 @@ class ExUnitView extends ScrollView
     @spinner.show()
     @output.empty()
     projectPath = atom.project.getPaths()[0]
+    rootDirectory = atom.config.get("exunit.root_directory")
 
     spawn = ChildProcess.spawn
 
@@ -81,6 +82,8 @@ class ExUnitView extends ScrollView
 
     console.log "[ExUnit] running: #{command}"
     @addOutput "[ExUnit] running: #{command}\n"
+    @addOutput "root directory: #{rootDirectory}" if rootDirectory && rootDirectory != ''
+    @addOutput "\n\n"
 
     terminal = spawn("bash", ["-l"])
 
@@ -89,7 +92,7 @@ class ExUnitView extends ScrollView
     terminal.stdout.on 'data', @onStdOut
     terminal.stderr.on 'data', @onStdErr
 
-    terminal.stdin.write("cd #{projectPath} && #{command}\n")
+    terminal.stdin.write("cd #{projectPath}/#{rootDirectory} && #{command}\n")
     terminal.stdin.write("exit\n")
 
   addOutput: (output) =>

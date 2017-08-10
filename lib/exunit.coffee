@@ -10,6 +10,9 @@ module.exports =
     spec_directory:
       type: 'string'
       default: 'test'
+    root_directory:
+      type: 'string'
+      default: ''
     save_before_run:
       type: 'boolean'
       default: false
